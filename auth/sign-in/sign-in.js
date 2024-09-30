@@ -1,11 +1,49 @@
-import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
-import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, TextInput, Pressable, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';;
+import {auth} from '../../configs/FireBaseConfigs'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 
 export default function SignIn({ navigation }) {
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);  // Added navigation as a dependency
+
+  const [email,setEmail]=useState();
+  const [password,setPassword]=useState();
+
+  const onSignIn=()=> {
+    if(!email || !password ) {
+      Alert.alert('Missing fields', 'Please complete all required fields', [
+        {
+          text: 'Ok',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },]);
+      return ;
+    }
+
+    signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user)
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    if(errorCode==='auth/invalid-credential') {
+      Alert.alert('Error', 'Invalid login credentials', [
+        {
+          text: 'cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },]);
+    }
+  });
+  }
 
   return (
     <View style={styles.container}>
@@ -14,11 +52,14 @@ export default function SignIn({ navigation }) {
     </Pressable>
       <Text style={styles.headertext}>Let's sign you in...</Text>
         <View style={styles.container}>
+
           <Text style={styles.labeltext}> Email </Text>
-          <TextInput placeholder='Enter Email' style={styles.inputbox}/>
+          <TextInput placeholder='Enter Email' style={styles.inputbox} onChangeText={(value)=>setEmail(value)}/>
+
           <Text style={styles.labeltext}> Password </Text>
-          <TextInput secureTextEntry={true} placeholder='Enter Password' style={styles.inputbox}/>
-            <Pressable style={styles.button} onPress={() => navigation.navigate('SignIn')}>
+          <TextInput secureTextEntry={true} placeholder='Enter Password' style={styles.inputbox} onChangeText={(value)=>setPassword(value)}/>
+
+            <Pressable style={styles.button} onPress={onSignIn}>
             <Text style={styles.buttontext}>Sign in</Text>
             </Pressable>
             <Pressable style={styles.button} onPress={() => navigation.navigate('SignUp')}>
