@@ -4,7 +4,7 @@ import React from 'react'
 export default function MyTrip() {
   return (
     <View>
-      <Text>myTrip</Text>
+      <Text>hello this is the my trip page</Text>
     </View>
   )
 }
