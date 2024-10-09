@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';;
 import {auth} from '../../configs/FireBaseConfigs'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { Link } from 'expo-router';
 
 
-export default function SignIn({ navigation }) {
+
+export default function SignIn() {
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);  // Added navigation as a dependency

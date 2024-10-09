@@ -50,16 +50,16 @@ export default function SignUp() {
         <TextInput placeholder='Enter Email' style={styles.inputbox} onChangeText={setEmail} />
 
         <Text style={styles.labeltext}>Password</Text>
-        <TextInput placeholder='Enter Password' style={styles.inputbox} onChangeText={setPassword} secureTextEntry />
+        <TextInput placeholder='Enter Password' style={styles.inputbox} secureTextEntry={true} onChangeText={setPassword} />
 
         <Text style={styles.labeltext}>Confirm Password</Text>
-        <TextInput placeholder='Confirm Your Password' style={styles.inputbox} onChangeText={setConfirmPassword} secureTextEntry />
+        <TextInput placeholder='Confirm Your Password' style={styles.inputbox} secureTextEntry={true} onChangeText={setConfirmPassword} />
 
         <Pressable style={styles.button} onPress={onCreateAccount}>
           <Text style={styles.buttontext}>Create Account</Text>
         </Pressable>
 
-        <Link href="/sign-in" asChild>
+        <Link href="../auth/sign-in/sign-in" asChild>
           <Pressable style={styles.button}>
             <Text style={styles.buttontext}>Go To Sign In</Text>
           </Pressable>

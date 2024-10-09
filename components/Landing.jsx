@@ -1,11 +1,9 @@
 import { View, Text, Image, ScrollView, StyleSheet, Pressable } from 'react-native';
 import React, {useEffect} from 'react';
+import { Link } from 'expo-router';
 
-export default function Landing({navigation}) {
-  useEffect(() => {
-    navigation.setOptions({ headerShown: false });
-  }, [navigation]);  // Added navigation as a dependency
-
+export default function Landing() {
+  
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image 
@@ -15,15 +13,24 @@ export default function Landing({navigation}) {
       <Text style={styles.text}>
         Welcome to Wander Whiz, your pocket trip planner!
       </Text>
-     <Pressable style={styles.button} onPress={() => navigation.navigate('SignUp')}>
-        <Text style={styles.buttontext}>Sign Up</Text>
+
+    <Link href="auth/sign-up" asChild > 
+     <Pressable style={styles.button}>
+        <Text style={styles.buttontext}>Sign up</Text>
      </Pressable>
-     <Pressable style={styles.button} onPress={() => navigation.navigate('SignIn')}>
-        <Text style={styles.buttontext}>Sign In</Text>
+    </Link>
+
+    <Link href="auth/sign-in" asChild > 
+     <Pressable style={styles.button}>
+        <Text style={styles.buttontext}>Sign in</Text>
      </Pressable>
-     <Pressable style={styles.button} onPress={() => navigation.navigate('SignIn')}>
-        <Text style={styles.buttontext}>Sign In With Google</Text>
+    </Link>
+
+    <Link href="/sign-in" asChild > 
+     <Pressable style={styles.button}>
+        <Text style={styles.buttontext}>Sign in with Google </Text>
      </Pressable>
+    </Link>
 
     </ScrollView>
   );

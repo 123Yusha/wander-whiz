@@ -1,6 +1,6 @@
 // _layout.tsx
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, Tabs } from "expo-router";
 
 export default function RootLayout() {
   useFonts({
@@ -11,8 +11,12 @@ export default function RootLayout() {
 
   return (
     <Stack>
-      <Stack.Screen name="(tabs)" />
-    </Stack>
+      <Stack.Screen name="index" />
+      <Stack.Screen name="../auth/sign-up/sign-up" />
+      <Stack.Screen name="../auth/sign-in/sign-in" />
+    
+    </Stack> 
+    
   );
 }
 
