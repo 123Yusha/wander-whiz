@@ -1,16 +1,13 @@
 import { View, Text, StyleSheet, TextInput, Pressable, Alert } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';;
-import {auth} from '../../configs/FireBaseConfigs'
+import {auth} from './configs/FireBaseConfigs'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'expo-router';
 
 
 
 export default function SignIn() {
-  useEffect(() => {
-    navigation.setOptions({ headerShown: false });
-  }, [navigation]);  // Added navigation as a dependency
 
   const [email,setEmail]=useState();
   const [password,setPassword]=useState();
@@ -49,9 +46,11 @@ export default function SignIn() {
 
   return (
     <View style={styles.container}>
-    <Pressable onPress={() => navigation.navigate('Landing')}>
-    <Ionicons name="arrow-back" size={26} color="#365b6d" />
-    </Pressable>
+     <Link href="/" asChild>
+      <Pressable>
+       <Ionicons name="arrow-back" size={26} color="#365b6d" />
+      </Pressable>
+      </Link>
       <Text style={styles.headertext}>Let's sign you in...</Text>
         <View style={styles.container}>
 

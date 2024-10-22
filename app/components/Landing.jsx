@@ -14,13 +14,13 @@ export default function Landing() {
         Welcome to Wander Whiz, your pocket trip planner!
       </Text>
 
-    <Link href="auth/sign-up" asChild > 
+    <Link href="/sign-up" asChild > 
      <Pressable style={styles.button}>
         <Text style={styles.buttontext}>Sign up</Text>
      </Pressable>
     </Link>
 
-    <Link href="auth/sign-in" asChild > 
+    <Link href="/sign-in" asChild > 
      <Pressable style={styles.button}>
         <Text style={styles.buttontext}>Sign in</Text>
      </Pressable>

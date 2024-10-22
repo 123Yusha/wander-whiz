@@ -1,20 +1,20 @@
 // _layout.tsx
 import { useFonts } from "expo-font";
-import { Stack, Tabs } from "expo-router";
+import { Stack } from "expo-router";
 
 export default function RootLayout() {
   useFonts({
-    'outfit': require('../assets/fonts/Outfit-Regular.ttf'),
-    'outfit-medium': require('../assets/fonts/Outfit-Medium.ttf'),
-    'outfit-bold': require('../assets/fonts/Outfit-Bold.ttf'),
+    'outfit': require('./assets/fonts/Outfit-Regular.ttf'),
+    'outfit-medium': require('./assets/fonts/Outfit-Medium.ttf'),
+    'outfit-bold': require('./assets/fonts/Outfit-Bold.ttf'),
   });
 
   return (
     <Stack>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="../auth/sign-up/sign-up" />
-      <Stack.Screen name="../auth/sign-in/sign-in" />
-    
+      <Stack.Screen name="(tabs)" />
+      {/* <Stack.Screen name="index" />
+      <Stack.Screen name="sign-up" />
+      <Stack.Screen name="sign-in" /> */}
     </Stack> 
     
   );

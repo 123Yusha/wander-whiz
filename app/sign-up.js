@@ -2,14 +2,16 @@ import { View, Text, StyleSheet, TextInput, Pressable, Alert } from 'react-nativ
 import React, { useEffect, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../configs/FireBaseConfigs';
+import { auth } from './configs/FireBaseConfigs';
 import { Link } from 'expo-router';
+
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [fullName, setFullName] = useState('');
+
 
   const onCreateAccount = () => {
     if (!email || !password || !fullName) {
@@ -26,7 +28,7 @@ export default function SignUp() {
       .then((userCredential) => {
         Alert.alert('Wander welcome!', 'Please sign in to continue', [
           {
-            text: 'Go to sign in',
+            text: 'Close',
             onPress: () => {}, // No need to navigate, just show the alert
           },
         ]);
@@ -38,33 +40,37 @@ export default function SignUp() {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => { /* Optionally handle back navigation */ }}>
-        <Ionicons name="arrow-back" size={26} color="#365b6d" />
-      </Pressable>
+
+      <Link href="/" asChild>
+        <Pressable>
+          <Ionicons name="arrow-back" size={26} color="#365b6d" />
+        </Pressable>
+      </Link>
+
       <Text style={styles.headertext}>Let's sign you up...</Text>
-      <View style={styles.container}>
+  
         <Text style={styles.labeltext}>Full Name</Text>
-        <TextInput placeholder='Enter Full Name' style={styles.inputbox} onChangeText={setFullName} />
+        <TextInput placeholder='Enter Full Name' style={styles.inputbox} autoCorrect={false} onChangeText={setFullName} />
 
         <Text style={styles.labeltext}>Email</Text>
-        <TextInput placeholder='Enter Email' style={styles.inputbox} onChangeText={setEmail} />
+        <TextInput placeholder='Enter Email' style={styles.inputbox} autoCorrect={false} onChangeText={setEmail} />
 
         <Text style={styles.labeltext}>Password</Text>
-        <TextInput placeholder='Enter Password' style={styles.inputbox} secureTextEntry={true} onChangeText={setPassword} />
+        <TextInput placeholder='Enter Password' secureTextEntry={true} passwordRules="required: lower; required: upper; required: digit; minlength: 8;" keyboardType="default" multiline={false} textContentType='none' style={styles.inputbox} autoCapitalize='none' autoCorrect={false} onChangeText={setPassword} />
 
         <Text style={styles.labeltext}>Confirm Password</Text>
-        <TextInput placeholder='Confirm Your Password' style={styles.inputbox} secureTextEntry={true} onChangeText={setConfirmPassword} />
+        <TextInput  placeholder='Confirm Your Password' secureTextEntry={true} passwordRules="required: lower; required: upper; required: digit; minlength: 8;" keyboardType="default" multiline={false} textContentType='none' style={styles.inputbox} autoCapitalize='none' autoCorrect={false} onChangeText={setConfirmPassword} />
 
         <Pressable style={styles.button} onPress={onCreateAccount}>
           <Text style={styles.buttontext}>Create Account</Text>
         </Pressable>
 
-        <Link href="../auth/sign-in/sign-in" asChild>
+        <Link href="/sign-in" asChild>
           <Pressable style={styles.button}>
             <Text style={styles.buttontext}>Go To Sign In</Text>
           </Pressable>
         </Link>
-      </View>
+      
     </View>
   );
 }
