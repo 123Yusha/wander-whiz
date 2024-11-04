@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';;
 import {auth} from './configs/FireBaseConfigs'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 
 
@@ -28,7 +28,8 @@ export default function SignIn() {
     // Signed in 
     const user = userCredential.user;
     console.log(user)
-    // ...
+    router.replace('/Trips')
+    
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -63,9 +64,13 @@ export default function SignIn() {
             <Pressable style={styles.button} onPress={onSignIn}>
             <Text style={styles.buttontext}>Sign in</Text>
             </Pressable>
+
+            <Link>
             <Pressable style={styles.button} onPress={() => navigation.navigate('SignUp')}>
             <Text style={styles.buttontext}>Create account</Text>
             </Pressable>
+            </Link>
+            
         </View>
     </View>
   );

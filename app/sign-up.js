@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './configs/FireBaseConfigs';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 
 
 export default function SignUp() {
@@ -26,15 +26,22 @@ export default function SignUp() {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        Alert.alert('Wander welcome!', 'Please sign in to continue', [
-          {
-            text: 'Close',
-            onPress: () => {}, // No need to navigate, just show the alert
-          },
-        ]);
+        Alert.alert('Wander welcome!', 'Your account is live and you are now signed in');
+        const user=userCredential.user;
+        console.log(user);
+        router.replace('/Trips');
       })
+
+
       .catch((error) => {
         console.log(error.message);
+        if (error.code === 'auth/invalid-email') {
+          Alert.alert('Invalid Email', 'The email address is badly formatted.');
+        } else if (error.code === 'auth/email-already-in-use') {
+          Alert.alert('Email in Use', 'This email is already registered. Please sign in.');
+        } else {
+          Alert.alert('Error', error.message); 
+        }
       });
   };
 
@@ -56,10 +63,10 @@ export default function SignUp() {
         <TextInput placeholder='Enter Email' style={styles.inputbox} autoCorrect={false} onChangeText={setEmail} />
 
         <Text style={styles.labeltext}>Password</Text>
-        <TextInput placeholder='Enter Password' secureTextEntry={true} passwordRules="required: lower; required: upper; required: digit; minlength: 8;" keyboardType="default" multiline={false} textContentType='none' style={styles.inputbox} autoCapitalize='none' autoCorrect={false} onChangeText={setPassword} />
+        <TextInput autoComplete="off" placeholder='Enter Password' secureTextEntry={true} passwordRules="required: lower;" keyboardType="default" multiline={false} textContentType="oneTimeCode" style={styles.inputbox} autoCapitalize="none" autoCorrect={false} onChangeText={setPassword} />
 
         <Text style={styles.labeltext}>Confirm Password</Text>
-        <TextInput  placeholder='Confirm Your Password' secureTextEntry={true} passwordRules="required: lower; required: upper; required: digit; minlength: 8;" keyboardType="default" multiline={false} textContentType='none' style={styles.inputbox} autoCapitalize='none' autoCorrect={false} onChangeText={setConfirmPassword} />
+        <TextInput  autoComplete="off" placeholder='Confirm Your Password' secureTextEntry={true} passwordRules="required: lower;" keyboardType="default" multiline={false} textContentType="oneTimeCode" style={styles.inputbox} autoCapitalize="none" autoCorrect={false} onChangeText={setConfirmPassword} />
 
         <Pressable style={styles.button} onPress={onCreateAccount}>
           <Text style={styles.buttontext}>Create Account</Text>
