@@ -65,8 +65,8 @@ export default function SignIn() {
             <Text style={styles.buttontext}>Sign in</Text>
             </Pressable>
 
-            <Link>
-            <Pressable style={styles.button} onPress={() => navigation.navigate('SignUp')}>
+            <Link href="/sign-up" asChild>
+            <Pressable style={styles.button}>
             <Text style={styles.buttontext}>Create account</Text>
             </Pressable>
             </Link>

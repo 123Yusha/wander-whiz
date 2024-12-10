@@ -1,52 +1,55 @@
 import { View, Text, Image, ScrollView, StyleSheet, Pressable } from 'react-native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import { Link } from 'expo-router';
 
+
 export default function Landing() {
-  
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Image 
-        source={require('../assets/images/wwlogo.png')}
-        style={styles.image}
-      />
-      <Text style={styles.text}>
-        Welcome to Wander Whiz, your pocket trip planner!
-      </Text>
-
-    <Link href="/sign-up" asChild > 
-     <Pressable style={styles.button}>
-        <Text style={styles.buttontext}>Sign up</Text>
-     </Pressable>
-    </Link>
-
-    <Link href="/sign-in" asChild > 
-     <Pressable style={styles.button}>
-        <Text style={styles.buttontext}>Sign in</Text>
-     </Pressable>
-    </Link>
-
-    <Link href="/sign-in" asChild > 
-     <Pressable style={styles.button}>
-        <Text style={styles.buttontext}>Sign in with Google </Text>
-     </Pressable>
-    </Link>
-
+    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      
+        <Image 
+          source={require('../assets/images/wwlogo.png')}
+          style={styles.image}
+        />
+        <Text style={styles.text}>
+          Welcome to Wander Whiz, your pocket trip planner!
+        </Text>
+      
+        <Link href="/sign-up" asChild> 
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>Sign up</Text>
+          </Pressable>
+        </Link>
+        
+        <Link href="/sign-in" asChild>
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>Sign In</Text>
+          </Pressable>
+        </Link>
+      
     </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flex: 1,
+    justifyContent: 'center',  // Center items on the screen vertically
+    alignItems: 'center',
+    backgroundColor: '#f5f5dc',
+  },
   container: {
-    flexGrow: 1,
-    alignItems: 'center',     // Center items horizontally
-    padding: 20,              // Add some padding for better layout
-    backgroundColor: '#f5f5dc'
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#f5f5dc',
   },
   image: {
-    width: '100%',
-    height: 280,        // Let height be calculated based on aspect ratio
-    aspectRatio: 1.5,         // Adjust the aspect ratio as needed
+    width: '80%',
+    aspectRatio: 1,           // Adjust based on the logo's shape
+    resizeMode: 'contain',
   },
   text: {
     fontSize: 20,
@@ -54,22 +57,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#365b6d',
     marginBottom: 20,
-    marginTop: -20,
   },
-
   button: {
     backgroundColor: '#365b6d',
-    margin: 5,
+    marginVertical: 10,
     borderRadius: 7,
-    width: '100%',
-    paddingVertical: 10,
-    alignItems: 'center'
-
-},
-  buttontext: {
-    color:'white',
-    fontFamily: 'outfit',
-    fontSize: 15,
-    padding: 10,
-},
+    width: '80%',                // Control button width
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  buttonText: {
+        color:'white',
+        fontFamily: 'outfit-bold',
+        fontSize: 15,
+        padding: 10,
+    
+  },
 });
