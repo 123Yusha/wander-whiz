@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 
-export default function OptionsCard({option, selectedTraveller}) {
+export default function OptionsCard({option, selectedOption}) {
   return ( 
-    <View style={[styles.container, selectedTraveller?.id === option?.id ? {borderWidth: 3} : {}]}>
+    <View style={[styles.container, selectedOption?.id === option?.id ? {borderWidth: 3} : {}]}>
       <View> 
         <Text style={styles.optionTitle}>{option.title}</Text> 
         <Text style={styles.optionDesc}>{option.desc}</Text>

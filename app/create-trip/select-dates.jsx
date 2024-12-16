@@ -27,6 +27,7 @@ const onDateChange = (date, type) => {
 
 
 const selectDateContinue = () => {
+ 
   if (!startDate || !endDate || !endDate.isValid()) { // Ensure both dates are selected
     Alert.alert('Select dates', 'Please select both start and end dates', [
       { text: 'Ok', style: 'cancel' },
@@ -62,17 +63,22 @@ const selectDateContinue = () => {
         allowRangeSelection={true} 
         minDate={new Date()}
         selectedRangeStyle={{
-          backgroundColor: '#B3EBF2',
+          backgroundColor: '#B3EBF2'
         }}
         maxRangeDuration={5}
         />
         </View>
-        <Link href="/create-trip/select-budget" asChild>
-        <Pressable style={styles.button} onPress={selectDateContinue}>
-        <Text style={styles.buttontext}>Continue</Text>
-        </Pressable>
-        </Link>
-
+        {startDate && endDate && endDate.isValid() ? (
+  <Link href="/create-trip/select-budget" asChild>
+    <Pressable style={styles.button} onPress={selectDateContinue}>
+      <Text style={styles.buttontext}>Continue</Text>
+    </Pressable>
+  </Link>
+) : (
+  <Pressable style={[styles.button, { opacity: 0.5 }]} disabled>
+    <Text style={styles.buttontext}>Select a date range to continue</Text>
+  </Pressable>
+)}
     </View>
   )
 }

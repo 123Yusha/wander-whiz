@@ -1,6 +1,6 @@
-import { View, Text, Pressable, StyleSheet, FlatList, TouchableOpacity, } from 'react-native'
+import { View, Text, Pressable, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-native'
 import React, { useEffect } from 'react';
-import { Link } from 'expo-router';
+import { Link, useRootNavigationState, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { SelectTravellerList } from '../constants/Options';
 import OptionsCard from '../components/CreateTrip/OptionsCard';
@@ -14,12 +14,26 @@ export default function SelectTraveller() {
 
 const [selectedTraveller, setSelectedTraveller] = useState();
 const { tripData, setTripData } = useContext(CreateTripContext);
+const router = useRouter();
 
 useEffect(()=> {
 setTripData({...tripData, 
     travelerCount: selectedTraveller
 })
 }, [selectedTraveller])
+
+const handleContinue = () => {
+  if (!selectedTraveller) {
+    Alert.alert(
+      'Traveler Needed',
+      'Please select a traveler before continuing.',
+      [{ text: 'OK' }]
+    );
+  } else {
+    router.push('/create-trip/select-dates')
+  }
+};
+
   return (
     <View style ={styles.container}>
         <Link href="../create-trip/search-place" asChild>
@@ -33,15 +47,13 @@ setTripData({...tripData,
         renderItem={({item, index})=>(
           <TouchableOpacity
           onPress={()=>setSelectedTraveller(item)}>
-            <OptionsCard option={item} selectedTraveller={selectedTraveller}/>
+            <OptionsCard option={item} selectedOption={selectedTraveller}/>
           </TouchableOpacity>  
         )} 
         />
-        <Link href="/create-trip/select-dates" asChild>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={handleContinue}>
         <Text style={styles.buttontext}>Continue</Text>
-        </Pressable>
-        </Link>
+      </Pressable>
 </View>
   )
 }
