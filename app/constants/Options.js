@@ -8,21 +8,21 @@ export const SelectTravellerList= [
     },
     {
         id: 2,
-        title: 'Couple',
+        title: 'A couple',
         desc: 'Travelling in tandem',
         icon: '🤝',
         people: '2'
     },
     {
         id: 3,
-        title: 'Small group',
+        title: 'A small group',
         desc: 'A fun loving group of three or four',
         icon: '🧑‍🧑‍🧒',
         people: '3-4'
     },
     {
         id: 4,
-        title: 'Large group',
+        title: 'A large group',
         desc: 'A squad of four or more',
         icon: '✈️',
         people: '4+'
