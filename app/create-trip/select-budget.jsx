@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, StyleSheet, Pressable, TouchableOpacity, Alert, SafeAreaView } from 'react-native'
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,7 +20,9 @@ useEffect(()=> {
 },[selectedOption])
 
   return (
+    
     <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.safeContainer}>
     <View style={styles.container}>
       <Link href="../create-trip/select-dates" asChild>
                 <Pressable>
@@ -46,7 +48,9 @@ useEffect(()=> {
           <Text style={styles.buttontext}>Select a budget to continue</Text>
         </Pressable>)}
     </View>
+    </SafeAreaView>
     </GestureHandlerRootView>
+    
   )
 }
 
@@ -54,7 +58,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,  
     padding: 20,               
-    backgroundColor: '#f5f5dc', 
+    
+    
+  },
+  safeContainer: {
+    flex: 1,
+    backgroundColor: "#f5f5dc",
   },
   headerText: {
     fontSize: 40,

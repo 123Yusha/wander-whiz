@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, Alert } from 'react-native'
+import { View, Text, StyleSheet, Pressable, Alert, SafeAreaView } from 'react-native'
 import React, { useState, useContext } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
@@ -50,7 +50,7 @@ const selectDateContinue = () => {
 
 
   return (
-    <View style = {styles.container}>
+    <SafeAreaView style = {styles.container}>
         <Link href ="/create-trip/select-traveller" asChild>
             <Pressable>
                 <Ionicons name="arrow-back" size={26} color="#365b6d" style={styles.backButton} />
@@ -79,7 +79,7 @@ const selectDateContinue = () => {
     <Text style={styles.buttontext}>Select a date range to continue</Text>
   </Pressable>
 )}
-    </View>
+    </SafeAreaView>
   )
 }
 
