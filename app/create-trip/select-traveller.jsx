@@ -39,29 +39,31 @@ export default function SelectTraveller() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Link href="../create-trip/search-place" asChild>
-        <Pressable>
-          <Ionicons
-            name="arrow-back"
-            size={26}
-            color="#365b6d"
-            style={styles.backButton}
-          />
+    <SafeAreaView style={styles.safeContainer}>
+      <View style={styles.container}>
+        <Link href="../create-trip/search-place" asChild>
+          <Pressable>
+            <Ionicons
+              name="arrow-back"
+              size={26}
+              color="#365b6d"
+              style={styles.backButton}
+            />
+          </Pressable>
+        </Link>
+        <Text style={styles.headerText}>Who's coming along?</Text>
+        <FlatList
+          data={SelectTravellerList}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity onPress={() => setSelectedTraveller(item)}>
+              <OptionsCard option={item} selectedOption={selectedTraveller} />
+            </TouchableOpacity>
+          )}
+        />
+        <Pressable style={styles.button} onPress={handleContinue}>
+          <Text style={styles.buttontext}>Continue</Text>
         </Pressable>
-      </Link>
-      <Text style={styles.headerText}>Who's coming along?</Text>
-      <FlatList
-        data={SelectTravellerList}
-        renderItem={({ item, index }) => (
-          <TouchableOpacity onPress={() => setSelectedTraveller(item)}>
-            <OptionsCard option={item} selectedOption={selectedTraveller} />
-          </TouchableOpacity>
-        )}
-      />
-      <Pressable style={styles.button} onPress={handleContinue}>
-        <Text style={styles.buttontext}>Continue</Text>
-      </Pressable>
+      </View>
     </SafeAreaView>
   );
 }
@@ -71,6 +73,10 @@ const styles = StyleSheet.create({
     flex: 1, // Ensures the view takes up the whole screen
     padding: 20, // Add some padding
     backgroundColor: "#f5f5dc", // Optional: Background color
+  },
+  safeContainer: {
+    flex: 1,
+    backgroundColor: "#f5f5dc",
   },
 
   headerText: {

@@ -131,6 +131,7 @@ export default function SignUp() {
 }
 
 const styles = StyleSheet.create({
+  
   container: {
     flex: 1, // Ensures the view takes up the whole screen
     padding: 20, // Add some padding

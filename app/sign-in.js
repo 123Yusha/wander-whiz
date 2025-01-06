@@ -52,7 +52,8 @@ export default function SignIn() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.safeContainer}>
+    <View style={styles.container}>
       <Link href="/" asChild>
         <Pressable>
           <Ionicons name="arrow-back" size={26} color="#365b6d" />
@@ -85,6 +86,7 @@ export default function SignIn() {
           </Pressable>
         </Link>
       </View>
+    </View>
     </SafeAreaView>
   );
 }
@@ -95,7 +97,10 @@ const styles = StyleSheet.create({
     padding: 20, // Add some padding
     backgroundColor: "#f5f5dc", // Optional: Background color
   },
-
+  safeContainer: {
+    flex: 1,
+    backgroundColor: "#f5f5dc",
+  },
   headertext: {
     fontSize: 18,
     marginTop: 20,

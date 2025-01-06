@@ -78,8 +78,8 @@ export default function ReviewTrip() {
           </View>
         </View>
         <Pressable style={styles.button}>
-        <Text style={styles.buttontext}>Build my trip</Text>
-      </Pressable>
+          <Text style={styles.buttontext}>Build my trip</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
